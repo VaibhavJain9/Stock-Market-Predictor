@@ -18,8 +18,6 @@ from flask import render_template, request,jsonify
 
 app = Flask(__name__)
 
-plt.rcParams["figure.figsize"] = [7.50, 3.50]
-plt.rcParams["figure.autolayout"] = True
 
 
 
