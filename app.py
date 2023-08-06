@@ -22,6 +22,7 @@ plt.rcParams["figure.figsize"] = [7.50, 3.50]
 plt.rcParams["figure.autolayout"] = True
 
 
+
 def is_valid_symbol(symbol):
     try:
         data = yf.download(symbol, period="1d")  # Download 1 day of data
@@ -41,7 +42,7 @@ def index():
 def generate_chart():
     symbol = request.form['symbol']
     if not is_valid_symbol(symbol):
-          return "<span style='color: red; align: ; font-size: larger;'>Invalid stock symbol!</span>"
+         return render_template('inval.html')
 
     start_date = request.form['start_date']
     end_date = request.form['end_date']
@@ -99,7 +100,7 @@ def generate_chart():
     model = run_lstm_model(X_train, layer_units=50)
 
     # Train the LSTM model
-    cur_epochs = 5
+    cur_epochs = 10
     cur_batch_size = 32
 
     history = model.fit(
