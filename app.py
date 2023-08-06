@@ -86,7 +86,7 @@ def generate_chart():
     window_size = 50
     X_train, y_train = extract_seqX_outcomeY(scaled_data_train, window_size, window_size)
 
-    def run_lstm_model(X_train, layer_units=100):
+    def run_lstm_model(X_train, layer_units=10):
         inp = Input(shape=(X_train.shape[1], 1))
         x = LSTM(units=layer_units, return_sequences=True)(inp)
         x = LSTM(units=layer_units)(x)
@@ -95,11 +95,11 @@ def generate_chart():
         model.compile(loss="mean_squared_error", optimizer="adam")
         return model
 
-    model = run_lstm_model(X_train, layer_units=50)
+    model = run_lstm_model(X_train, layer_units=10)
 
     # Train the LSTM model
-    cur_epochs = 10
-    cur_batch_size = 32
+    cur_epochs = 5
+    cur_batch_size = 100
 
     history = model.fit(
         X_train,
